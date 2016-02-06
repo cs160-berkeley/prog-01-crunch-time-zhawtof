@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText numberOfRepsOrMinutes;
     Spinner exercisePerformed;
     Spinner alternativeExercise;
+    int alternativePosition;
     TextView caloriesBurned;
     TextView minOrRep;
     TextView alternativeNumberMinOrRep;
@@ -62,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         numberOfRepsOrMinutes = (EditText) findViewById(R.id.minutesRepsNumber);
         caloriesBurned = (TextView) findViewById(R.id.caloriesBurnedField);
@@ -81,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupCaloriesBurned() {
         numberOfRepsOrMinutes.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -91,12 +89,12 @@ public class MainActivity extends AppCompatActivity {
                     try{
                         numberCompleted = Integer.parseInt(num);
                         product = numberCompleted * 100 / forOneHundredCals;
-                        caloriesBurned.setText(Float.toString(product));
+                        caloriesBurned.setText(Integer.toString(Math.round(product)));
 
                         //Calculate Alternative
-                        alternativeNumberMinOrRep.setText(Float.toString(product * alternativeOneHundred / 100));
+                        alternativeNumberMinOrRep.setText(Integer.toString(Math.round(product * alternativeOneHundred / 100)));
                     } catch (NumberFormatException nfe) {
-                        numberOfRepsOrMinutes.setText("0");
+                        numberOfRepsOrMinutes.setText("");
                     }
                 } else {
                     caloriesBurned.setText("0");
@@ -105,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-            }
+            public void afterTextChanged(Editable s) {}
         });
     }
 
@@ -128,19 +125,21 @@ public class MainActivity extends AppCompatActivity {
         final List<String> exerciseList = new ArrayList<>(allExercises.keySet());
         Collections.sort(exerciseList);
         final ArrayAdapter<String> exerciseAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, exerciseList);
-        exerciseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                this, R.layout.spinner_item, exerciseList);
+        exerciseAdapter.setDropDownViewResource(R.layout.spinner_item);
 
         exercisePerformed.setAdapter(exerciseAdapter);
         alternativeExercise.setAdapter(exerciseAdapter);
-
 
         exercisePerformed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
 
-                alternativeExercise.setSelection((position + 1) % exerciseList.size());
+                if (position == alternativePosition) {
+                    product = 0;
+                    alternativeExercise.setSelection((position + 1) % exerciseList.size());
+                }
 
                 if (allExercises.get(item).getRepOrMinute() == REP) {
                     minOrRep.setText("reps");
@@ -165,13 +164,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
+                alternativePosition = position;
                 if (allExercises.get(item).getRepOrMinute() == REP) {
                     alternativeMinOrRep.setText("reps");
                 } else {
                     alternativeMinOrRep.setText("minutes");
                 }
                 alternativeOneHundred = allExercises.get(item).getForHundredCalories();
-                alternativeNumberMinOrRep.setText(Float.toString(product * alternativeOneHundred / 100));
+                if (!Float.isInfinite(product)) {
+                    alternativeNumberMinOrRep.setText(Integer.toString(Math.round(product * alternativeOneHundred / 100)));
+                }
             }
 
             @Override

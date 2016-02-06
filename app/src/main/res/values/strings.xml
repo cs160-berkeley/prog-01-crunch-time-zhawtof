@@ -7,4 +7,6 @@
     <string name="caloriesText">calories</string>
     <string name="forText">for</string>
     <string name="ifIGoText">If I do</string>
+    <string name="forwhichText">for which</string>
+    <string name="wouldtakeText">would take</string>
 </resources>
