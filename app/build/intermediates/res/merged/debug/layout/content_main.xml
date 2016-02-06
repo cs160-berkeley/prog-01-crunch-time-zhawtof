@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main" tools:context=".MainActivity"
+    android:clickable="false"
+    android:background="#FDF3E7">
+
+    <TextView
+        android:id="@+id/caloriesBurnedField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/zeroCaloriesBurned"
+        android:layout_alignTop="@+id/iwillburnText"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/minutesRepsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_alignStart="@+id/exerciseSpinner"
+        android:layout_alignBottom="@+id/fortext"
+        android:layout_toStartOf="@+id/caloriesText" />
+
+    <Spinner
+        android:id="@+id/exerciseSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/iwillburnText"
+        android:layout_alignTop="@+id/ifigoText"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/ifigoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/ifIGoText"
+        android:layout_marginTop="17dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false" />
+
+    <TextView
+        android:id="@+id/iwillburnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/iWillBurnText"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/fortext"
+        android:layout_alignStart="@+id/fortext"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/caloriesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/caloriesText"
+        android:layout_alignTop="@+id/caloriesBurnedField"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/fortext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/forText"
+        android:layout_below="@+id/ifigoText"
+        android:layout_alignParentStart="true"
+        android:layout_alignStart="@id/ifigoText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/minorrep"
+        android:layout_alignTop="@+id/fortext"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="for which"
+        android:id="@+id/forwhichText"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/iwillburnText"
+        android:layout_alignStart="@id/iwillburnText" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alternativeSpinner"
+        android:layout_alignStart="@id/exerciseSpinner"
+        android:layout_alignTop="@+id/forwhichText"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="would take"
+        android:id="@+id/wouldtakeText"
+        android:layout_below="@+id/forwhichText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_alignStart="@id/forwhichText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/alternativenumrop"
+        android:layout_alignTop="@+id/wouldtakeText"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/alternativerop"
+        android:layout_alignEnd="@+id/alternativeSpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/wouldtakeText" />
+
+</RelativeLayout>
+<!-- From: file:/Users/zhawtof/AndroidStudioProjects/CrunchTime/app/src/main/res/layout/content_main.xml -->
